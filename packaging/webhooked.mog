@@ -1,0 +1,7 @@
+set name=pkg.fmri value=$(COMPONENT_NAME)@$(COMPONENT_VERSION),5.11-0
+set name=pkg.summary value="$(COMPONENT_SUMMARY)"
+set name=pkg.description value="$(COMPONENT_DESCRIPTION)"
+set name=variant.arch value=$(ARCH)
+set name=info.classification value="org.opensolaris.category.2008:Applications/System Utilities"
+
+<transform dir ->drop>
