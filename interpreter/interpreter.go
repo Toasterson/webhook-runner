@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/containous/yaegi/interp"
 	"github.com/containous/yaegi/stdlib"
+	"github.com/sirupsen/logrus"
+
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -36,6 +38,7 @@ func New(path string) (*Interpreter, error) {
 	}
 
 	for _, f := range files {
+		logrus.Infof("loading hook from file %s", f)
 		content, err := ioutil.ReadFile(f)
 		if err != nil {
 			return nil, fmt.Errorf("could not load source files: %w", err)
@@ -54,6 +57,7 @@ func New(path string) (*Interpreter, error) {
 }
 
 func (interp *Interpreter) LoadFunction(name string) error {
+	logrus.Infof("attempting to load hook function %s", name)
 	v, err := interp.interpreter.Eval(name)
 	if err != nil {
 		return err
@@ -66,7 +70,7 @@ func (interp *Interpreter) LoadFunction(name string) error {
 		return fmt.Errorf("function is of type %T and not of expected type func(interface {}) error", v.Interface())
 	}
 	interp.loadedHooks[name] = hook
-
+	logrus.Infof("function %s successfully loaded", name)
 	return nil
 }
 
