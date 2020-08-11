@@ -68,6 +68,10 @@ func (serv *Server) MakeGithubHandler(cfg HookConfig) (gin.HandlerFunc, error) {
 		return nil, err
 	}
 
+	if err := serv.interpreter.LoadFunction(cfg.Action); err != nil {
+		return nil, err
+	}
+
 	return func(context *gin.Context) {
 		payload, err := hook.Parse(context.Request, eventByName)
 		if err != nil {
