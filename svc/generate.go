@@ -20,6 +20,7 @@ func main() {
 		GroupName:        "root",
 		Env: []string{
 			"CONFIG=/etc/webhooked.hcl",
+			"GOPATH=/opt/webhooked/usr",
 		},
 		StartCommand: []string{
 			"/usr/bin/webhooked",

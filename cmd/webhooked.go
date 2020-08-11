@@ -29,10 +29,13 @@ var srvCommand = cobra.Command{
 func main() {
 	srvCommand.Flags().StringP("config", "c", "config.hcl", "The configuration file to read in")
 	srvCommand.Flags().StringP("listen", "l", ":3000", "Which port to listen as")
+	srvCommand.Flags().StringP("gopath", "g", "./usr", "The GOPATH with the scripts to load")
 	if err := viper.BindPFlags(srvCommand.Flags()); err != nil {
 		fmt.Println(err)
 		return
 	}
+
+	viper.AutomaticEnv()
 
 	if err := srvCommand.Execute(); err != nil {
 		os.Exit(1)

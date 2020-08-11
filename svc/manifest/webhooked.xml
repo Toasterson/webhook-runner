@@ -10,6 +10,7 @@
 			<method_credential user="root" group="root"></method_credential>
 			<method_environment>
 				<envvar name="CONFIG" value="/etc/webhooked.hcl"></envvar>
+				<envvar name="GOPATH" value="/opt/webhooked/usr"></envvar>
 			</method_environment>
 		</method_context>
 		<exec_method type="method" name="start" exec="/usr/bin/webhooked" timeout_seconds="0"></exec_method>

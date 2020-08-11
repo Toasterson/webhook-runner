@@ -17,7 +17,7 @@ type Server struct {
 }
 
 func New() (*Server, error) {
-	interp, err := interpreter.New("usr")
+	interp, err := interpreter.New(viper.GetString("gopath"))
 	if err != nil {
 		return nil, fmt.Errorf("could not initialize interpreter: %w", err)
 	}

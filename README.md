@@ -13,8 +13,13 @@ Install the binary by running the following command
 go get github.com/toasterson/webhook-runner/cmd/webhooked
 ```
 
+Then run the daemon by running 
+```shell script
+
+```
+
 ## Packaging
-You can get a IPS package for illumos by running the packaging shellscript 
+You can create an IPS package for illumos by running the packaging shellscript 
 ```shell script
 ./hack/package.sh
 ```
