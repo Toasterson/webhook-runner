@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<service_bundle type="manifest" name="application/webhooked">
+	<service name="application/webhooked" version="1" type="service">
+		<create_default_instance enabled="true"></create_default_instance>
+		<dependency name="milestone" grouping="require_all" restart_on="none" type="service">
+			<service_fmri value="svc:/milestone/multi-user"></service_fmri>
+		</dependency>
+		<method_context working_directory="/var/www">
+			<method_credential user="root" group="root"></method_credential>
+			<method_environment>
+				<envvar name="CONFIG" value="/etc/webhooked.hcl"></envvar>
+				<envvar name="GOPATH" value="/opt/webhooked/usr"></envvar>
+			</method_environment>
+		</method_context>
+		<exec_method type="method" name="start" exec="/usr/bin/webhooked" timeout_seconds="0"></exec_method>
+		<exec_method type="method" name="stop" exec=":kill" timeout_seconds="0"></exec_method>
+	</service>
+</service_bundle>

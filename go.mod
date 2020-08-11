@@ -11,6 +11,6 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.6.1
-	github.com/toasterson/svcgen v0.0.0-20200810131217-5ea201adb26b // indirect
+	github.com/toasterson/svcgen v0.0.0-20200811132715-c74083da9b39
 	gopkg.in/go-playground/webhooks.v5 v5.15.0
 )
