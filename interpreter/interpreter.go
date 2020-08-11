@@ -75,7 +75,12 @@ func (interp *Interpreter) RunLoadedHook(name string, payload interface{}, param
 		return fmt.Errorf("empty payload passed to runner")
 	}
 
-	if err := interp.loadedHooks[name](payload, params); err != nil {
+	hook, loaded := interp.loadedHooks[name]
+	if !loaded {
+		return fmt.Errorf("no hook with name %s has been loaded", name)
+	}
+
+	if err := hook(payload, params); err != nil {
 		return fmt.Errorf("error while running webhook %s: %w", name, err)
 	}
 
