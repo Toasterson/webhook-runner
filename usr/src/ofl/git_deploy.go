@@ -14,5 +14,11 @@ func DeployWebsite(rawPayload interface{}, params map[string]string) error {
 
 	cmd := exec.Command("/usr/bin/git", "pull")
 	cmd.Dir = params["local_path"]
-	return cmd.Run()
+	out, err := cmd.CombinedOutput()
+
+	if err != nil {
+		return fmt.Errorf("git failed to execute with %w: output\n %s", err, out)
+	}
+
+	return nil
 }
