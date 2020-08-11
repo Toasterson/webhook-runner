@@ -18,8 +18,8 @@ mkdir -p "$PROTO_DIR/i386/opt"
 ## Build
 go build -o "$PROTO_DIR/i386/$PREFIX/bin/webhooked" cmd/*.go
 cp -r usr "$PROTO_DIR/i386/opt/webhooked"
-install -d "$PROTO_DIR/i386/lib/svc/manifest"
-install -c "$PROTO_DIR/i386/lib/svc/manifest" -m 0644 -u root -g bin svc/manifest/webhooked.xml
+install -d "$PROTO_DIR/i386/lib/svc/manifest/application"
+install -c "$PROTO_DIR/i386/lib/svc/manifest/application" -m 0644 -u root -g bin svc/manifest/webhooked.xml
 
 ## Packaging commands
 pkgsend generate "$PROTO_DIR/i386" | pkgfmt > "$PROTO_DIR/webhooked.p5m.1"
