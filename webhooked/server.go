@@ -72,9 +72,11 @@ func (serv *Server) MakeGithubHandler(cfg HookConfig) (gin.HandlerFunc, error) {
 		payload, err := hook.Parse(context.Request, eventByName)
 		if err != nil {
 			if err == github.ErrEventNotFound {
-				log.Errorf("event %s is not in the config to be parsed ignoring")
+				log.Errorf("error while parsing for event %s: %s", eventByName, err)
 				return
 			}
+			log.Errorf("Error during hook parsing: %s", err)
+			return
 		}
 
 		if err := serv.interpreter.RunLoadedHook(cfg.Action, payload, cfg.Params); err != nil {
